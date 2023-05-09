@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stump
+  namespace: stump
+  labels:
+    app.kubernetes.io/name: stump
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: stump
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: stump
+    spec:
+      containers:
+        - name: stump
+          image: "aaronleopold/stump"
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: "stump-config"
+          ports:
+            - name: http
+              containerPort: 10801
+              protocol: TCP
+          volumeMounts:
+            - name: stump-data
+              mountPath: /data
+            - name: stump-library
+              mountPath: /books
+              readOnly: true
+      volumes:
+        - name: stump-data
+          persistentVolumeClaim:
+            claimName: stump-data-pvc
+        - name: stump-library
+          hostPath:
+            path: /media/books
+            type: Directory
+
