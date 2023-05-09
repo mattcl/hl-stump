@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: stump
-          image: "aaronleopold/stump"
+          image: "aaronleopold/stump:nightly"
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
