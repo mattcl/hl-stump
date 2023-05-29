@@ -34,7 +34,6 @@ spec:
               mountPath: /config
             - name: stump-library
               mountPath: /books
-              readOnly: true
       volumes:
         - name: stump-data
           persistentVolumeClaim:
