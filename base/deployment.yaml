@@ -31,7 +31,7 @@ spec:
               protocol: TCP
           volumeMounts:
             - name: stump-data
-              mountPath: /data
+              mountPath: /config
             - name: stump-library
               mountPath: /books
               readOnly: true
