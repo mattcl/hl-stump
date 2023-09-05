@@ -34,9 +34,6 @@ spec:
               mountPath: /config
             - name: stump-library
               mountPath: /books
-          securityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
       volumes:
         - name: stump-data
           persistentVolumeClaim:
