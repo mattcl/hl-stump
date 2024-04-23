@@ -40,6 +40,6 @@ spec:
             claimName: stump-data-pvc
         - name: stump-library
           hostPath:
-            path: /media/books
+            path: /mnt/books
             type: Directory
 
